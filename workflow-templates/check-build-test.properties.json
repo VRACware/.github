@@ -1,0 +1,5 @@
+{
+    "name": "Rust default",
+    "description": "cargo check/build/test",
+    "iconName": "octicon validated"
+}

@@ -1,6 +1,13 @@
 name: check-build-test
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
 
 jobs:
   simple:
@@ -16,11 +23,10 @@ jobs:
       CARGO_TERM_COLOR: always
 
     steps:
-      - uses: actions/checkout@v4
-
-      - run: rustup toolchain install stable --profile minimal --no-self-update
-
-      - run: |
-          cargo check
-          cargo build
-          cargo test
+    - uses: actions/checkout@v3
+    - name: Check
+      run: cargo check --verbose
+    - name: Build
+      run: cargo build --verbose
+    - name: Test
+      run: cargo test --verbose
